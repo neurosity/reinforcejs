@@ -1,0 +1,23 @@
+{
+  "name": "@neurosity/reinforcejs",
+  "version": "1.0.0",
+  "description": "Reinforcement Learning library",
+  "main": "src/index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neurosity/reinforcejs.git"
+  },
+  "keywords": [
+    "reinforce",
+    "reinforcejs",
+    "ml",
+    "deep-learning"
+  ],
+  "author": "Andrej Karpathy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neurosity/reinforcejs/issues"
+  },
+  "homepage": "https://github.com/neurosity/reinforcejs#readme"
+}
