@@ -5,7 +5,7 @@
 - **Dynamic Programming** methods
 - (Tabular) **Temporal Difference Learning** (SARSA/Q-Learning)
 - **Deep Q-Learning** for Q-Learning with function approximation with Neural Networks
-- **Stochastic/Deterministic Policy Gradients** and Actor Critic architectures for dealing with continuous action spaces. (*very alpha, likely buggy or at the very least finicky and inconsistent*)
+- **Stochastic/Deterministic Policy Gradients** and Actor Critic architectures for dealing with continuous action spaces. (_very alpha, likely buggy or at the very least finicky and inconsistent_)
 
 See the [main webpage](http://cs.stanford.edu/people/karpathy/reinforcejs) for many more details, documentation and demos.
 
@@ -22,14 +22,19 @@ A typical usage might look something like:
 ```javascript
 // create an environment object
 var env = {};
-env.getNumStates = function() { return 8; }
-env.getMaxNumActions = function() { return 4; }
+env.getNumStates = function () {
+  return 8;
+};
+env.getMaxNumActions = function () {
+  return 4;
+};
 
 // create the DQN agent
-var spec = { alpha: 0.01 } // see full options on DQN page
-agent = new RL.DQNAgent(env, spec); 
+var spec = { alpha: 0.01 }; // see full options on DQN page
+agent = new RL.DQNAgent(env, spec);
 
-setInterval(function(){ // start the learning loop
+setInterval(function () {
+  // start the learning loop
   var action = agent.act(s); // s is an array of length 8
   //... execute action in environment and get the reward
   agent.learn(reward); // the agent improves its Q,policy,model, etc. reward is a float
