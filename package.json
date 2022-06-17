@@ -2,8 +2,19 @@
   "name": "@neurosity/reinforcejs",
   "version": "1.0.0",
   "description": "Reinforcement Learning library",
-  "main": "src/index.js",
-  "scripts": {},
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:iife",
+    "build:cjs": "./node_modules/.bin/esbuild ./src/index.js --bundle --outfile=./dist/index.cjs.js --platform=node --target=node14",
+    "build:esm": "./node_modules/.bin/esbuild ./src/index.js --bundle --outfile=./dist/index.esm.js --platform=neutral",
+    "build:iife": "./node_modules/.bin/esbuild ./src/index.js --bundle --outfile=./dist/index.iife.js --platform=browser",
+    "clean": "rimraf ./dist"
+  },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/neurosity/reinforcejs.git"
@@ -19,5 +30,9 @@
   "bugs": {
     "url": "https://github.com/neurosity/reinforcejs/issues"
   },
-  "homepage": "https://github.com/neurosity/reinforcejs#readme"
+  "homepage": "https://github.com/neurosity/reinforcejs#readme",
+  "devDependencies": {
+    "esbuild": "^0.14.44",
+    "rimraf": "^3.0.2"
+  }
 }

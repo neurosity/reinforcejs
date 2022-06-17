@@ -1,5 +1,7 @@
 import * as R from "./recurrent";
 
+export * from "./recurrent";
+
 // syntactic sugar function for getting default parameter values
 var getopt = function (opt, field_name, default_value) {
   if (typeof opt === "undefined") {

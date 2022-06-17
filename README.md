@@ -1,6 +1,6 @@
-# REINFORCEjs
+# REINFORCEjs (fork)
 
-**REINFORCEjs** is a Reinforcement Learning library that implements several common RL algorithms, all with web demos. In particular, the library currently includes:
+**REINFORCEjs** is a Reinforcement Learning library by Andrej Karpathy that implements several common RL algorithms, all with web demos. In particular, the library currently includes:
 
 - **Dynamic Programming** methods
 - (Tabular) **Temporal Difference Learning** (SARSA/Q-Learning)
@@ -9,33 +9,40 @@
 
 See the [main webpage](http://cs.stanford.edu/people/karpathy/reinforcejs) for many more details, documentation and demos.
 
-# Code Sketch
+> This fork adds node.js and ESM support.
 
-The library exports two global variables: `R`, and `RL`. The former contains various kinds of utilities for building expression graphs (e.g. LSTMs) and performing automatic backpropagation, and is a fork of my other project [recurrentjs](https://github.com/karpathy/recurrentjs). The `RL` object contains the current implementations:
+# Getting Started
 
-- `RL.DPAgent` for finite state/action spaces with environment dynamics
-- `RL.TDAgent` for finite state/action spaces
-- `RL.DQNAgent` for continuous state features but discrete actions
+Install the library as a dependency:
+
+```bash
+npm install @neurosity/reinforcejs
+```
+
+The library also includes a fork of Andrej's project [recurrentjs](https://github.com/karpathy/recurrentjs) with various utilities for building expression graphs (e.g. LSTMs) and performing automatic backpropagation. Agents for reinforncejs include:
+
+- `DPAgent` for finite state/action spaces with environment dynamics
+- `TDAgent` for finite state/action spaces
+- `DQNAgent` for continuous state features but discrete actions
 
 A typical usage might look something like:
 
 ```javascript
+import { DQNAgent } from "@neurosity/reinforcejs";
+
 // create an environment object
-var env = {};
-env.getNumStates = function () {
-  return 8;
-};
-env.getMaxNumActions = function () {
-  return 4;
+const env = {
+  getNumStates: () => 8,
+  getMaxNumActions: () => 4
 };
 
 // create the DQN agent
-var spec = { alpha: 0.01 }; // see full options on DQN page
-agent = new RL.DQNAgent(env, spec);
+const spec = { alpha: 0.01 }; // see full options on DQN page
+agent = new DQNAgent(env, spec);
 
 setInterval(function () {
   // start the learning loop
-  var action = agent.act(s); // s is an array of length 8
+  const action = agent.act(s); // s is an array of length 8
   //... execute action in environment and get the reward
   agent.learn(reward); // the agent improves its Q,policy,model, etc. reward is a float
 }, 0);
